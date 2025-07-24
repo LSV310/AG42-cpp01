@@ -1,9 +1,9 @@
 #include "HumanB.hpp"
 
-HumanB::HumanB(string name, Weapon weapon)
+HumanB::HumanB(string name)
 {
 	this->_name = name;
-	this->_weapon = &weapon;
+	this->_weapon = NULL;
 	return ;
 }
 
@@ -14,8 +14,10 @@ HumanB::~HumanB(void)
 
 void	HumanB::attack(void)
 {
-	Weapon	weapon = *this->_weapon;
+	if (!this->_weapon)
+		return ;
 
+	Weapon	weapon = *this->_weapon;
 	std::cout << this->_name << " attacks with their " << weapon.getType() << std::endl;
 }
 

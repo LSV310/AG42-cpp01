@@ -12,7 +12,7 @@ class HumanB {
 		Weapon	*_weapon;
 
 	public:
-		HumanB(string name, Weapon weapon = Weapon(""));
+		HumanB(string name);
 		~HumanB(void);
 
 		void	attack(void);
