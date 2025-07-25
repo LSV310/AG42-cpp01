@@ -1,35 +1,25 @@
 CXX			= c++
-CXXFLAGS	= -Wall -Werror -Wextra -std=c++98 -ggdb
+CXXFLAGS	= -Wall -Werror -Wextra -std=c++98
 
-HEADERS		= ./headers/
-SRC_DIR		= ./srcs/
-OBJ_DIR		= ./objs/
-
-CXXFLAGS += -I$(HEADERS)
-
-SRCS		= main.cpp
-OBJS		= $(patsubst %.cpp, $(OBJ_DIR)%.o, $(SRCS))
-DEPS		= $(OBJS:.o=.d)
+SRC			= main.cpp
+OBJ			= $(SRC:.cpp=.o)
 
 NAME		= SedIsForLosers
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+$(NAME): $(OBJ)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
-	@mkdir -p $(dir $@)
+%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ_DIR)
+	rm -rf $(OBJ)
 
 fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
-
--include $(DEPS)
 
 .PHONY: all clean fclean re

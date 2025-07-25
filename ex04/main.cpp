@@ -8,15 +8,20 @@ void	replace(std::ifstream &ifs, std::ofstream &ofs, std::string s1, std::string
 
 	while (std::getline(ifs, line))
 	{
-		pos = line.find(s1, 0);
-		while (pos != std::string::npos)
+		if (!s1.empty())
 		{
-			line = line.erase(pos, s1.size());
-			line.insert(pos, s2);
-			pos += s2.length();
-			pos = line.find(s1, pos);
+			pos = line.find(s1, 0);
+			while (pos != std::string::npos)
+			{
+				line = line.erase(pos, s1.size());
+				line.insert(pos, s2);
+				pos += s2.length();
+				pos = line.find(s1, pos);
+			}
 		}
-		ofs << line << std::endl;
+		ofs << line;
+		if (ifs.good())
+			ofs << std::endl;
 	}
 }
 
