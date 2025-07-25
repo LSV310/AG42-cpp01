@@ -23,6 +23,7 @@ void	replace(std::ifstream &ifs, std::ofstream &ofs, std::string s1, std::string
 		if (ifs.good())
 			ofs << std::endl;
 	}
+	std::cout << "\e[1;32mSed is for losers\e[0m" << std::endl;
 }
 
 int	main(int ac, char **av)
@@ -32,11 +33,17 @@ int	main(int ac, char **av)
 	std::string		name;
 
 	if (ac != 4)
+	{
+		std::cout << "\e[1;31mInvalid amount of arguments\e[0m" << std::endl;
 		return (1);
+	}
 
 	ifs.open(av[1]);
 	if (!ifs.is_open())
+	{
+		std::cout << "\e[1;31mInvalid file name\e[0m" << std::endl;
 		return (1);
+	}
 
 	name = av[1];
 	name += ".replace";
