@@ -1,18 +1,16 @@
 #include "Harl.hpp"
 
-int	main(void)
+int	main(int ac, char **av)
 {
+	string	level;
 	Harl	harl;
 
-	harl.complain("DEBUG");
-	std::cout << "\e[1;36m───────────────────────────\e[0m" << std::endl;
-	harl.complain("INFO");
-	std::cout << "\e[1;36m───────────────────────────\e[0m" << std::endl;
-	harl.complain("WARNING");
-	std::cout << "\e[1;36m───────────────────────────\e[0m" << std::endl;
-	harl.complain("ERROR");
-	std::cout << "\e[1;36m───────────────────────────\e[0m" << std::endl;
-	harl.complain("SALUT");
-	std::cout << "\e[1;36m───────────────────────────\e[0m" << std::endl;
-	harl.complain("");
+	if (ac != 2)
+	{
+		std::cout << "\e[0;31mInvalid amount of arguments\e[0m" << std::endl;
+		return (1);
+	}
+	level = av[1];
+	harl.complain(level);
+	return (0);
 }
