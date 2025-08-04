@@ -39,12 +39,24 @@ void	Harl::error(void)
 
 void	Harl::complain(std::string level)
 {
-	std::string	actionNames[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	std::string action = "DEBUG";
+	std::string	actions[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	int i = 0;
 
-	switch (level)
+	while (i < 4 && actions[i] != level)
+		i++;
+	switch (i)
 	{
-		case "DEBUG" :
-			break;
+		case 0:
+			this->debug();
+		case 1:
+			this->info();
+		case 2:
+			this->warning();
+		case 3:
+			this->error();
+			break ;
+		default:
+			std::cout << "\e[1;30m[ Probably complaining about insignificant problems ]\e[0m" << std::endl;
+			break ;
 	}
 }
